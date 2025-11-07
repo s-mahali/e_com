@@ -1,5 +1,6 @@
 import {ShoppingCart, Star } from "lucide-react";
 import Button from "./Button";
+import {type ProductCardProps } from "../index";
 
 const getBadgeClasses = (badge: string) => {
   const baseClass =
@@ -26,20 +27,11 @@ const ProductCard = ({
   category,
   productTitle,
   rating,
-}: {
-  className?: string;
-  badge?: string;
-  imageUrl: string;
-  vendorName: string;
-  basePrice: number;
-  dcPrice: number;
-  category: string;
-  productTitle: string;
-  rating: number;
-}) => {
+  variant = 'default'
+}: ProductCardProps) => {
   return (
     <div
-      className={`relative w-full max-w-[298px] p-4 rounded-lg border border-border flex flex-col gap-3 group ${className} `}
+      className={`relative w-full max-w-[320px] p-4 rounded-lg border border-border flex flex-col gap-3 group ${className} `}
     >
       <div className="w-full h-[200px] bg-card-bg rounded-lg overflow-hidden">
         {badge && <span className={getBadgeClasses(badge)}>{badge}</span>}
@@ -65,16 +57,40 @@ const ProductCard = ({
           By <a href="#" className="text-primary hover:underline">{vendorName}</a>
         </span>
      </div>
-     <div className="flex justify-between items-center mt-auto pt-2">
-       <div className="flex items-baseline gap-2">
-          <span className="text-lg font-semibold text-[#3BB77E]">
-            ${dcPrice.toFixed(2)}
-          </span>
-          <span className="text-sm text-text-tertiary line-through">
-            ${basePrice.toFixed(2)}
-          </span>
-        </div>
-        <Button title="Add" icon={<ShoppingCart className="w-4 h-4 text-white"/>}></Button>
+     <div className="mt-auto pt-2">
+       {
+        variant === 'default' ? (
+           <div className="flex justify-between items-center">
+             <div className="flex items-baseline gap-2">
+              <span className="text-lg font-bold text-[#3BB77E]">
+                ${dcPrice.toFixed(2)}
+              </span>
+              <span className="text-sm text-text-tertiary line-through">
+                ${basePrice.toFixed(2)}
+              </span>
+            </div>
+            <Button title="Add" icon={<ShoppingCart className="w-4 h-4"/>} onClick={(e) => {e.stopPropagation(); console.log("hello")}}/>
+           </div>
+        ) : (
+          <div className="flex flex-col gap-3">
+            <div className="flex items-baseline gap-2 mb-10">
+              <span className="text-lg font-bold text-[#3BB77E]">
+                ${dcPrice.toFixed(2)}
+              </span>
+              <span className="text-sm text-text-tertiary line-through">
+                ${basePrice.toFixed(2)}
+              </span>
+            </div>
+           
+            <Button
+              title="Add To Cart"
+              className="w-full" 
+              
+            />
+          </div>
+          
+        )
+       }
         
      </div>
     </div>

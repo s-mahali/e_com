@@ -1,9 +1,9 @@
 import { Search, User, Heart, ShoppingCart, ChevronDown } from "lucide-react";
-import logoImage from "../assets/react.svg";
+import logoImage from "../assets/logo_com.png";
 import {Link}  from "react-router";
 
 const Logo = () => (
-  <a className="flex items-center gap-3 shrink-0">
+  <Link to={'/'} className="flex items-center gap-3 shrink-0">
     <img src={logoImage} alt="Foodzy logo" className="w-12 h-12" />
     <div>
       <span className="text-2xl font-bold font-logo text-text-secondary">
@@ -11,7 +11,7 @@ const Logo = () => (
       </span>
       <p className="text-xs text-text-tertiary">A Treasure of Tastes</p>
     </div>
-  </a>
+  </Link>
 );
 
 const HeaderSearchBar = () => (
@@ -98,7 +98,7 @@ const UserActions = () => {
 
 const Header = () => {
   return (
-    <header className="container max-w-[1296px] m-auto bg-white">
+    <header className="container max-w-width-header m-auto bg-white">
       <div
         className="
           container py-4

@@ -1,5 +1,6 @@
 import { ChevronDown, TextAlignJustify, Phone, Menu, X } from "lucide-react";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const navItems = [
   { title: "Home", path: "/home" },
@@ -26,16 +27,16 @@ const DesktopNavLinks = () => (
   <ul className="hidden md:flex gap-4 items-center justify-center">
     {navItems.map((item) => (
       <li key={item.path}>
-        <a
-          href={item.path}
+        <Link
+          to={item.path}
           className="
             flex items-center gap-0.5 text-xs font-medium 
-            font-family-primary text-text-secondary hover:text-primary transition-colors
+            text-text-secondary hover:text-primary transition-colors
           "
         >
           <span>{item.title}</span>
           {item.icon}
-        </a>
+        </Link>
       </li>
     ))}
   </ul>
@@ -58,7 +59,7 @@ const MobileMenu = ({ isOpen }: { isOpen: boolean }) => {
               href={item.path}
               className="
                 flex items-center justify-between w-full py-3 
-                text-base font-medium font-family-primary 
+                text-base font-medium  
                 text-text-secondary hover:text-primary transition-colors
               "
             >
@@ -77,7 +78,7 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <nav className="w-full max-w-[1920px] border-b border-border shadow-sm bg-white relative">
+    <nav className="w-full  border-b border-border shadow-sm bg-white relative">
       <div className="container flex items-center justify-around h-[55px]">
         <div className="flex items-center ">
           <button className="hidden md:block p-1 border border-border rounded">
